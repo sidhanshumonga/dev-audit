@@ -1,4 +1,4 @@
-import { Project, SyntaxKind, Node, Type } from 'ts-morph';
+import { Project, SyntaxKind, Type } from 'ts-morph';
 
 // Represents a single property extracted from a TypeScript type or interface.
 export interface ParsedProperty {

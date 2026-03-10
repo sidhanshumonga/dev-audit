@@ -1,0 +1,7 @@
+dist/
+node_modules/
+coverage/
+.next/
+website/.next/
+website/node_modules/
+*.md
