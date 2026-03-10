@@ -17,9 +17,9 @@ function normalisePath(routePath: string): string {
 // cases where the frontend uses template literals or partial paths.
 function isRouteUsed(routePath: string, calledPaths: string[]): boolean {
   const normalised = normalisePath(routePath);
-  return calledPaths.some((called) =>
-    normalisePath(called).includes(normalised) ||
-    normalised.includes(normalisePath(called))
+  return calledPaths.some(
+    (called) =>
+      normalisePath(called).includes(normalised) || normalised.includes(normalisePath(called))
   );
 }
 
@@ -32,18 +32,11 @@ export async function runScan(targetPath: string): Promise<void> {
   logger.blank();
 
   // Detect the framework so we know which scanner to use
-  const framework =
-    config.framework === 'auto'
-      ? detectFramework(projectRoot)
-      : config.framework;
+  const framework = config.framework === 'auto' ? detectFramework(projectRoot) : config.framework;
 
   if (framework === 'unknown') {
-    logger.warn(
-      'Could not detect a supported framework (Express, Next.js, NestJS).'
-    );
-    logger.warn(
-      'Set "framework" in dev-audit.config.json to run the scan manually.'
-    );
+    logger.warn('Could not detect a supported framework (Express, Next.js, NestJS).');
+    logger.warn('Set "framework" in dev-audit.config.json to run the scan manually.');
     process.exit(1);
   }
 
@@ -58,9 +51,7 @@ export async function runScan(targetPath: string): Promise<void> {
 
   const calledPaths = frontendCalls.map((c) => c.path);
 
-  const deadRoutes = routes.filter(
-    (route) => !isRouteUsed(route.path, calledPaths)
-  );
+  const deadRoutes = routes.filter((route) => !isRouteUsed(route.path, calledPaths));
 
   logger.info(`Routes found:    ${routes.length}`);
   logger.info(`Frontend calls:  ${frontendCalls.length}`);
@@ -75,13 +66,9 @@ export async function runScan(targetPath: string): Promise<void> {
 
   for (const route of deadRoutes) {
     const relative = path.relative(projectRoot, route.filePath);
-    logger.listItem(
-      `${route.method.padEnd(7)} ${route.path}  (${relative}:${route.line})`
-    );
+    logger.listItem(`${route.method.padEnd(7)} ${route.path}  (${relative}:${route.line})`);
   }
 
   logger.blank();
-  logger.warn(
-    'Review these endpoints — they may be legacy code that can be removed.'
-  );
+  logger.warn('Review these endpoints — they may be legacy code that can be removed.');
 }

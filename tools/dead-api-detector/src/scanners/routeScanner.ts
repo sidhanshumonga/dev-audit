@@ -11,17 +11,13 @@ export interface Route {
 
 // Regex patterns for each framework's route definition syntax.
 // Each pattern captures the HTTP method and the route path string.
-const EXPRESS_ROUTE_PATTERN =
-  /app\.(get|post|put|patch|delete|all)\s*\(\s*['"`]([^'"`]+)['"`]/gi;
+const EXPRESS_ROUTE_PATTERN = /app\.(get|post|put|patch|delete|all)\s*\(\s*['"`]([^'"`]+)['"`]/gi;
 
 const NESTJS_DECORATOR_PATTERN =
   /@(Get|Post|Put|Patch|Delete)\s*\(\s*['"`]?([^'"`)]*)['"`]?\s*\)/gi;
 
 // Scans backend source files and returns all defined API routes.
-export async function scanRoutes(
-  projectRoot: string,
-  framework: Framework
-): Promise<Route[]> {
+export async function scanRoutes(projectRoot: string, framework: Framework): Promise<Route[]> {
   const routes: Route[] = [];
 
   if (framework === 'express') {
@@ -68,10 +64,7 @@ async function scanNextJsRoutes(projectRoot: string): Promise<Route[]> {
   const routes: Route[] = [];
 
   // Pages router: files under pages/api/ map directly to routes
-  const pagesApiFiles = await findFiles(projectRoot, [
-    'pages/api/**/*.ts',
-    'pages/api/**/*.js',
-  ]);
+  const pagesApiFiles = await findFiles(projectRoot, ['pages/api/**/*.ts', 'pages/api/**/*.js']);
 
   for (const filePath of pagesApiFiles) {
     const relative = path.relative(projectRoot, filePath);
@@ -130,10 +123,7 @@ async function scanNextJsRoutes(projectRoot: string): Promise<Route[]> {
 }
 
 async function scanNestJsRoutes(projectRoot: string): Promise<Route[]> {
-  const files = await findFiles(projectRoot, [
-    'src/**/*.controller.ts',
-    'src/**/*.controller.js',
-  ]);
+  const files = await findFiles(projectRoot, ['src/**/*.controller.ts', 'src/**/*.controller.js']);
   const routes: Route[] = [];
 
   for (const filePath of files) {
@@ -141,9 +131,7 @@ async function scanNestJsRoutes(projectRoot: string): Promise<Route[]> {
     if (!content) continue;
 
     // Extract the base path from the @Controller() decorator
-    const controllerMatch = content.match(
-      /@Controller\s*\(\s*['"`]([^'"`]*)['"`]\s*\)/
-    );
+    const controllerMatch = content.match(/@Controller\s*\(\s*['"`]([^'"`]*)['"`]\s*\)/);
     const basePath = controllerMatch ? `/${controllerMatch[1]}` : '';
 
     const lines = content.split('\n');

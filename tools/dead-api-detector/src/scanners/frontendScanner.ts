@@ -20,15 +20,8 @@ const API_CALL_PATTERNS: RegExp[] = [
 // Scans all frontend source files and extracts any strings that look like
 // API calls. We cast a wide net here — false positives are better than
 // false negatives when deciding whether a route is "used".
-export async function scanFrontendCalls(
-  projectRoot: string
-): Promise<ApiCall[]> {
-  const files = await findFiles(projectRoot, [
-    '**/*.ts',
-    '**/*.tsx',
-    '**/*.js',
-    '**/*.jsx',
-  ]);
+export async function scanFrontendCalls(projectRoot: string): Promise<ApiCall[]> {
+  const files = await findFiles(projectRoot, ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx']);
 
   const calls: ApiCall[] = [];
 

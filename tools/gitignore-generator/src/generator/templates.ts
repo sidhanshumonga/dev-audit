@@ -23,12 +23,7 @@ const TEMPLATES: Record<Stack, string[]> = {
     '.env.local',
     '.env.*.local',
   ],
-  nextjs: [
-    '# Next.js',
-    '.next/',
-    'out/',
-    '.vercel',
-  ],
+  nextjs: ['# Next.js', '.next/', 'out/', '.vercel'],
   python: [
     '# Python',
     '__pycache__/',
@@ -48,11 +43,7 @@ const TEMPLATES: Record<Stack, string[]> = {
     '.ruff_cache/',
     '*.pyc',
   ],
-  docker: [
-    '# Docker',
-    '.dockerignore',
-    'docker-compose.override.yml',
-  ],
+  docker: ['# Docker', '.dockerignore', 'docker-compose.override.yml'],
   terraform: [
     '# Terraform',
     '.terraform/',
@@ -69,22 +60,8 @@ const TEMPLATES: Record<Stack, string[]> = {
     '.terraformrc',
     'terraform.rc',
   ],
-  go: [
-    '# Go',
-    '*.exe',
-    '*.exe~',
-    '*.dll',
-    '*.so',
-    '*.dylib',
-    '*.test',
-    '*.out',
-    'vendor/',
-  ],
-  rust: [
-    '# Rust',
-    'target/',
-    'Cargo.lock',
-  ],
+  go: ['# Go', '*.exe', '*.exe~', '*.dll', '*.so', '*.dylib', '*.test', '*.out', 'vendor/'],
+  rust: ['# Rust', 'target/', 'Cargo.lock'],
   java: [
     '# Java',
     '*.class',

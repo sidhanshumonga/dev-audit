@@ -27,9 +27,7 @@ describe('scanRoutes — Express', () => {
     });
 
     const routes = await scanRoutes(tmpDir, 'express');
-    expect(routes).toContainEqual(
-      expect.objectContaining({ method: 'GET', path: '/api/users' })
-    );
+    expect(routes).toContainEqual(expect.objectContaining({ method: 'GET', path: '/api/users' }));
   });
 
   it('detects a POST route', async () => {
@@ -97,9 +95,7 @@ describe('scanRoutes — Next.js', () => {
     });
 
     const routes = await scanRoutes(tmpDir, 'nextjs');
-    expect(routes).toContainEqual(
-      expect.objectContaining({ path: '/api/users' })
-    );
+    expect(routes).toContainEqual(expect.objectContaining({ path: '/api/users' }));
   });
 
   it('detects app router GET route', async () => {

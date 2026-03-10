@@ -4,10 +4,7 @@ import { buildGitignore } from '../generator/templates';
 import { resolvePath, writeFile, fileExists } from '../utils/fileWriter';
 import * as logger from '../utils/logger';
 
-export async function runGenerate(
-  targetPath: string,
-  write: boolean
-): Promise<void> {
+export async function runGenerate(targetPath: string, write: boolean): Promise<void> {
   const projectRoot = resolvePath(targetPath);
 
   logger.header('dev-audit — Gitignore Generator');
@@ -18,9 +15,7 @@ export async function runGenerate(
 
   if (stacks.length === 0) {
     logger.warn('No recognisable stack detected.');
-    logger.warn(
-      'Try running from your project root, or check that indicator files exist.'
-    );
+    logger.warn('Try running from your project root, or check that indicator files exist.');
     process.exit(1);
   }
 

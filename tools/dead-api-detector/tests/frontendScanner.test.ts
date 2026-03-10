@@ -77,10 +77,7 @@ describe('scanFrontendCalls', () => {
 
   it('records the correct file path and line number', async () => {
     tmpDir = createTempProject({
-      'src/component.tsx': [
-        `// line 1`,
-        `const data = await fetch('/api/dashboard')`,
-      ].join('\n'),
+      'src/component.tsx': [`// line 1`, `const data = await fetch('/api/dashboard')`].join('\n'),
     });
 
     const calls = await scanFrontendCalls(tmpDir);

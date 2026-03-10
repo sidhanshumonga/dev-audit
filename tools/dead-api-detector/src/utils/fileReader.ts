@@ -4,10 +4,7 @@ import { glob } from 'glob';
 
 // Reads all files matching a given pattern under a directory.
 // Returns an array of absolute file paths.
-export async function findFiles(
-  dir: string,
-  patterns: string[]
-): Promise<string[]> {
+export async function findFiles(dir: string, patterns: string[]): Promise<string[]> {
   const results: string[] = [];
 
   for (const pattern of patterns) {
@@ -45,7 +42,5 @@ export function isDirectory(targetPath: string): boolean {
 
 // Resolves a path relative to cwd if it isn't already absolute.
 export function resolvePath(targetPath: string): string {
-  return path.isAbsolute(targetPath)
-    ? targetPath
-    : path.resolve(process.cwd(), targetPath);
+  return path.isAbsolute(targetPath) ? targetPath : path.resolve(process.cwd(), targetPath);
 }

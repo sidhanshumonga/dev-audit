@@ -31,7 +31,11 @@ export function detectFramework(projectRoot: string): Framework {
   }
 
   // Next.js projects have `next` as a dependency and often a next.config file
-  if ('next' in allDeps || fs.existsSync(path.join(projectRoot, 'next.config.js')) || fs.existsSync(path.join(projectRoot, 'next.config.ts'))) {
+  if (
+    'next' in allDeps ||
+    fs.existsSync(path.join(projectRoot, 'next.config.js')) ||
+    fs.existsSync(path.join(projectRoot, 'next.config.ts'))
+  ) {
     return 'nextjs';
   }
 

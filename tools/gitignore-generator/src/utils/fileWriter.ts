@@ -3,9 +3,7 @@ import path from 'path';
 
 // Resolves a path relative to cwd if it isn't already absolute.
 export function resolvePath(targetPath: string): string {
-  return path.isAbsolute(targetPath)
-    ? targetPath
-    : path.resolve(process.cwd(), targetPath);
+  return path.isAbsolute(targetPath) ? targetPath : path.resolve(process.cwd(), targetPath);
 }
 
 // Writes content to a file at the given path.

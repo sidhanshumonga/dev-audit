@@ -12,10 +12,7 @@ function toRouteSegment(typeName: string): string {
 // GET  /<resource>        — returns a list of fake objects
 // POST /<resource>        — echoes back a freshly generated fake object
 // GET  /<resource>/:id    — returns a single fake object (id is ignored, data is generated)
-function registerRoutes(
-  app: express.Application,
-  parsedType: ParsedType
-): void {
+function registerRoutes(app: express.Application, parsedType: ParsedType): void {
   const segment = toRouteSegment(parsedType.name);
 
   app.get(`/${segment}`, (_req: Request, res: Response) => {

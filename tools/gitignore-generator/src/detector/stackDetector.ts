@@ -3,15 +3,7 @@ import path from 'path';
 
 // Each stack we can detect. A project may match multiple stacks —
 // that's intentional, since a Next.js project is also a Node project.
-export type Stack =
-  | 'node'
-  | 'nextjs'
-  | 'python'
-  | 'docker'
-  | 'terraform'
-  | 'go'
-  | 'rust'
-  | 'java';
+export type Stack = 'node' | 'nextjs' | 'python' | 'docker' | 'terraform' | 'go' | 'rust' | 'java';
 
 // Maps a stack name to a human-readable label for output.
 export const STACK_LABELS: Record<Stack, string> = {
@@ -33,9 +25,7 @@ function has(projectRoot: string, ...segments: string[]): boolean {
 // Reads package.json dependencies if present. Returns an empty object on failure.
 function getPackageDeps(projectRoot: string): Record<string, string> {
   try {
-    const pkg = JSON.parse(
-      fs.readFileSync(path.join(projectRoot, 'package.json'), 'utf-8')
-    );
+    const pkg = JSON.parse(fs.readFileSync(path.join(projectRoot, 'package.json'), 'utf-8'));
     return { ...(pkg.dependencies ?? {}), ...(pkg.devDependencies ?? {}) };
   } catch {
     return {};

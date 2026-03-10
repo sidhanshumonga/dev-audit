@@ -59,20 +59,20 @@ describe('startServer', () => {
 
   it('GET /<resource> returns 5 items by default', async () => {
     server = startServer({ port: 14003, parsedTypes: [userType] });
-    const result = await get(14003, '/users') as unknown[];
+    const result = (await get(14003, '/users')) as unknown[];
     expect(result).toHaveLength(5);
   });
 
   it('GET /<resource>/:id returns a single object', async () => {
     server = startServer({ port: 14004, parsedTypes: [userType] });
-    const result = await get(14004, '/users/abc-123') as Record<string, unknown>;
+    const result = (await get(14004, '/users/abc-123')) as Record<string, unknown>;
     expect(typeof result).toBe('object');
     expect(Array.isArray(result)).toBe(false);
   });
 
   it('returned objects contain the expected properties', async () => {
     server = startServer({ port: 14005, parsedTypes: [userType] });
-    const list = await get(14005, '/users') as Record<string, unknown>[];
+    const list = (await get(14005, '/users')) as Record<string, unknown>[];
     expect(list[0]).toHaveProperty('id');
     expect(list[0]).toHaveProperty('name');
     expect(list[0]).toHaveProperty('email');

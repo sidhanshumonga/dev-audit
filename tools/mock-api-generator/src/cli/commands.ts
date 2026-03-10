@@ -3,10 +3,7 @@ import { parseTypesFromFile } from '../parser/typeParser';
 import { startServer } from '../server/mockServer';
 import * as logger from '../utils/logger';
 
-export async function runServe(
-  typesPath: string,
-  port: number
-): Promise<void> {
+export async function runServe(typesPath: string, port: number): Promise<void> {
   const resolvedPath = path.isAbsolute(typesPath)
     ? typesPath
     : path.resolve(process.cwd(), typesPath);
