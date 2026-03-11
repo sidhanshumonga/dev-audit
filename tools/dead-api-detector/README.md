@@ -30,16 +30,55 @@ npm install -g @dev-audit/dead-api-detector
 dev-audit-dead scan
 ```
 
+## How it works
+
+- Scans backend route definitions (Express, Next.js, NestJS)
+- Scans frontend code for `fetch()`, `axios`, and template literal API calls
+- Matches dynamic segments: `/api/users/:id` matches `fetch(\`/api/users/${id}\`)`
+- Auto-ignores Vercel cron routes defined in `vercel.json`
+- Prints inline hints for routes that look externally-called (webhooks, crons, OAuth callbacks)
+
+## Suppressing false positives
+
+Some routes are called externally (webhooks, cron schedulers, manual scripts) and will never appear as `fetch()` calls in your source. The tool will flag these with a hint:
+
+```
+→ POST    /api/stripe/webhook
+           ↳ tip: webhooks are called by external services — add to ignoreEndpoints if intentional
+```
+
+To permanently suppress them, add to `dev-audit.config.json`:
+
+```json
+{
+  "ignoreEndpoints": [
+    "/api/stripe/webhook",
+    "/api/cron/*"
+  ]
+}
+```
+
+Wildcards are supported — `/api/cron/*` suppresses all routes under that prefix.
+
+**Vercel cron routes** are auto-ignored without any config — the tool reads `vercel.json` automatically.
+
 ## Configuration
 
-Create a `dev-audit.config.json` in your project root to customise behaviour:
+Create a `dev-audit.config.json` in your project root:
 
 ```json
 {
   "ignoreDirectories": ["node_modules", ".next", "dist"],
-  "framework": "auto"
+  "framework": "auto",
+  "ignoreEndpoints": ["/api/stripe/webhook", "/api/cron/*"]
 }
 ```
+
+| Option | Default | Description |
+|---|---|---|
+| `ignoreDirectories` | `["node_modules", ".next", "dist", "build", ".git"]` | Directories to skip when scanning |
+| `framework` | `"auto"` | Force a framework: `express`, `nextjs`, `nestjs` |
+| `ignoreEndpoints` | `[]` | Routes to suppress — supports `*` wildcards |
 
 ## Contributing
 
