@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Copy, Check } from "lucide-react";
+import { useState } from 'react';
+import { Copy, Check } from 'lucide-react';
 
-const COMMAND = "npx dev-audit scan";
+const COMMAND = 'npx dev-audit --help';
 
 export default function CopyCommand() {
   const [copied, setCopied] = useState(false);
@@ -25,11 +25,7 @@ export default function CopyCommand() {
       <span className="text-white/40">$</span>
       <span>{COMMAND}</span>
       <span className="ml-1 text-white/30 group-hover:text-white/60 transition-colors">
-        {copied ? (
-          <Check size={14} className="text-emerald-400" />
-        ) : (
-          <Copy size={14} />
-        )}
+        {copied ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
       </span>
     </button>
   );
