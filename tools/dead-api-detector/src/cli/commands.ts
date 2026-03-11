@@ -17,11 +17,11 @@ function normalisePath(routePath: string): string {
 // frontend calls. e.g. /api/users/:id or /api/users/[id] both become
 // a pattern that matches /api/users/ (from a stripped template literal).
 function routeToMatchPattern(routePath: string): RegExp {
-  const escaped = normalisePath(routePath)
-    // Replace Express :param and Next.js [param] dynamic segments with a wildcard
-    .replace(/:[^/]+/g, '[^/]+')
-    .replace(/\[[^\]]+\]/g, '[^/]+')
-    .replace(/[.*+?^${}()|[\]\\]/g, (c) => (c === '[' || c === ']' || c === '+' ? c : `\\${c}`));
+  // Split on dynamic segments (:param or [param]) so we can escape static
+  // parts independently, then reassemble with a wildcard for each dynamic part.
+  const normalised = normalisePath(routePath);
+  const parts = normalised.split(/:[^/]+|\[[^\]]+\]/g);
+  const escaped = parts.map((p) => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('[^/]*');
   return new RegExp(`^${escaped}`);
 }
 
