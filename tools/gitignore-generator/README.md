@@ -1,8 +1,8 @@
-# gitignore-generator
+# @dev-audit/gitignore-generator
 
-Detects your project stack and generates a tailored `.gitignore` file.
+Detects your project stack and generates a tailored `.gitignore` file automatically.
 
-## Supported Stack Detection
+## Supported Stacks
 
 - Node.js
 - Next.js
@@ -13,39 +13,34 @@ Detects your project stack and generates a tailored `.gitignore` file.
 - Rust
 - Java / Maven / Gradle
 
-## Installation
-
-```bash
-cd tools/gitignore-generator
-npm install
-npm run build
-```
-
 ## Usage
+
+**Via the full dev-audit suite (recommended):**
 
 ```bash
 # Preview the generated .gitignore (dry run)
-dev-audit-gitignore generate --path /path/to/your/project
+npx dev-audit gitignore generate
 
 # Write the .gitignore to disk
-dev-audit-gitignore generate --path /path/to/your/project --write
+npx dev-audit gitignore generate --write
 ```
 
-## Configuration
-
-Create a `dev-audit.config.json` in your project root to customise behaviour:
-
-```json
-{
-  "ignoreDirectories": ["node_modules", ".next", "dist"],
-  "framework": "auto"
-}
-```
-
-## Development
+**Or run without installing:**
 
 ```bash
-npm run dev
+npx @dev-audit/gitignore-generator generate --write
+```
+
+**Or install globally:**
+
+```bash
+npm install -g @dev-audit/gitignore-generator
+dev-audit-gitignore generate --write
+```
+
+## Contributing
+
+```bash
 npm test
 npm run lint
 npm run format

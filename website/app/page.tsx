@@ -169,39 +169,48 @@ export default function Home() {
             </div>
             <h3 className="font-semibold mb-1">Individual tools</h3>
             <p className="text-sm text-white/50 mb-4">Install only the tools you actually use.</p>
-            <div className="bg-[#0a0a0a] rounded-xl p-4 font-[family-name:var(--font-mono)] text-sm space-y-3">
+            <div className="bg-[#0a0a0a] rounded-xl p-4 font-[family-name:var(--font-mono)] text-sm space-y-4">
               <div>
-                <p className="text-white/30 text-xs mb-1"># Dead API Detector</p>
+                <p className="text-white/30 text-xs mb-1.5"># Dead API Detector</p>
                 <p>
                   <span className="text-white/40">$</span>{' '}
-                  <span className="text-white">npm install -g @dev-audit/dead-api-detector</span>
+                  <span className="text-white">npx @dev-audit/dead-api-detector scan</span>
                 </p>
+                <p className="text-white/20 text-xs mt-1 mb-0.5">or install globally</p>
                 <p>
                   <span className="text-white/40">$</span>{' '}
-                  <span className="text-emerald-400">dev-audit-dead scan</span>
+                  <span className="text-white/50">npm install -g @dev-audit/dead-api-detector</span>
                 </p>
               </div>
               <div>
-                <p className="text-white/30 text-xs mb-1"># Gitignore Generator</p>
+                <p className="text-white/30 text-xs mb-1.5"># Gitignore Generator</p>
                 <p>
                   <span className="text-white/40">$</span>{' '}
-                  <span className="text-white">npm install -g @dev-audit/gitignore-generator</span>
+                  <span className="text-white">
+                    npx @dev-audit/gitignore-generator generate --write
+                  </span>
                 </p>
+                <p className="text-white/20 text-xs mt-1 mb-0.5">or install globally</p>
                 <p>
                   <span className="text-white/40">$</span>{' '}
-                  <span className="text-emerald-400">dev-audit-gitignore generate --write</span>
+                  <span className="text-white/50">
+                    npm install -g @dev-audit/gitignore-generator
+                  </span>
                 </p>
               </div>
               <div>
-                <p className="text-white/30 text-xs mb-1"># Mock API Generator</p>
+                <p className="text-white/30 text-xs mb-1.5"># Mock API Generator</p>
                 <p>
                   <span className="text-white/40">$</span>{' '}
-                  <span className="text-white">npm install -g @dev-audit/mock-api-generator</span>
+                  <span className="text-white">
+                    npx @dev-audit/mock-api-generator serve --types ./src/types.ts
+                  </span>
                 </p>
+                <p className="text-white/20 text-xs mt-1 mb-0.5">or install globally</p>
                 <p>
                   <span className="text-white/40">$</span>{' '}
-                  <span className="text-emerald-400">
-                    dev-audit-mock serve --types ./src/types.ts
+                  <span className="text-white/50">
+                    npm install -g @dev-audit/mock-api-generator
                   </span>
                 </p>
               </div>

@@ -1,4 +1,4 @@
-# dead-api-detector
+# @dev-audit/dead-api-detector
 
 Detects backend API routes that are defined but never called by your frontend code.
 
@@ -8,24 +8,31 @@ Detects backend API routes that are defined but never called by your frontend co
 - Next.js (pages/api and app/api routes)
 - NestJS
 
-## Installation
-
-```bash
-cd tools/dead-api-detector
-npm install
-npm run build
-```
-
 ## Usage
 
+**Via the full dev-audit suite (recommended):**
+
 ```bash
-# Run from your project root
-dev-audit dead scan --path /path/to/your/project
+npx dev-audit dead scan
+npx dev-audit dead scan --path /path/to/your/project
+```
+
+**Or run without installing:**
+
+```bash
+npx @dev-audit/dead-api-detector scan
+```
+
+**Or install globally:**
+
+```bash
+npm install -g @dev-audit/dead-api-detector
+dev-audit-dead scan
 ```
 
 ## Configuration
 
-Create a `"dev-audit.config.json"` in your project root to customize behavior:
+Create a `dev-audit.config.json` in your project root to customise behaviour:
 
 ```json
 {
@@ -34,20 +41,12 @@ Create a `"dev-audit.config.json"` in your project root to customize behavior:
 }
 ```
 
-## Development
-
-```bash
-npm run dev       # run with ts-node
-npm test          # run tests
-npm run lint      # lint
-npm run format    # format with prettier
-```
-
-## Testing
+## Contributing
 
 ```bash
 npm test
-npm run test:coverage
+npm run lint
+npm run format
 ```
 
 Minimum coverage threshold: 80%
