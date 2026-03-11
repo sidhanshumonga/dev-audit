@@ -135,9 +135,33 @@ export async function runScan(targetPath: string): Promise<void> {
 
   logger.header(`Dead endpoints detected: ${deadRoutes.length}`);
 
+  // Patterns that suggest a route is called externally rather than from frontend code.
+  // These aren't auto-ignored — we still flag them — but we add a hint so the user
+  // knows why no in-code reference exists.
+  const EXTERNAL_HINTS: { pattern: RegExp; hint: string }[] = [
+    {
+      pattern: /webhook/i,
+      hint: 'tip: webhooks are called by external services — add to ignoreEndpoints if intentional',
+    },
+    {
+      pattern: /\/cron\//i,
+      hint: 'tip: cron routes are called by a scheduler — add to ignoreEndpoints or vercel.json',
+    },
+    {
+      pattern: /callback/i,
+      hint: 'tip: callback routes are typically called by OAuth or payment providers',
+    },
+  ];
+
   for (const route of deadRoutes) {
     const relative = path.relative(projectRoot, route.filePath);
     logger.listItem(`${route.method.padEnd(7)} ${route.path}  (${relative}:${route.line})`);
+    for (const { pattern, hint } of EXTERNAL_HINTS) {
+      if (pattern.test(route.path)) {
+        logger.info(`         ↳ ${hint}`);
+        break;
+      }
+    }
   }
 
   logger.blank();

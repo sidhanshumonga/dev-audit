@@ -188,6 +188,37 @@ describe('vercel.json cron auto-ignore', () => {
   });
 });
 
+describe('external hint patterns', () => {
+  const EXTERNAL_HINTS = [
+    { pattern: /webhook/i, type: 'webhook' },
+    { pattern: /\/cron\//i, type: 'cron' },
+    { pattern: /callback/i, type: 'callback' },
+  ];
+
+  const matchesHint = (routePath: string) =>
+    EXTERNAL_HINTS.some(({ pattern }) => pattern.test(routePath));
+
+  it('detects webhook routes', () => {
+    expect(matchesHint('/api/stripe/webhook')).toBe(true);
+    expect(matchesHint('/api/webhooks/github')).toBe(true);
+  });
+
+  it('detects cron routes', () => {
+    expect(matchesHint('/api/cron/sync')).toBe(true);
+    expect(matchesHint('/api/cron/cleanup')).toBe(true);
+  });
+
+  it('detects callback routes', () => {
+    expect(matchesHint('/api/auth/callback')).toBe(true);
+    expect(matchesHint('/api/oauth/callback')).toBe(true);
+  });
+
+  it('does not flag regular routes', () => {
+    expect(matchesHint('/api/users')).toBe(false);
+    expect(matchesHint('/api/products')).toBe(false);
+  });
+});
+
 describe('Next.js dynamic route scanning', () => {
   let tmpDir: string;
 
