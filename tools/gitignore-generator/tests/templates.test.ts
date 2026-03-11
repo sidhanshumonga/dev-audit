@@ -5,7 +5,10 @@ describe('getTemplateEntries', () => {
   it('returns Node.js entries', () => {
     const entries = getTemplateEntries('node');
     expect(entries).toContain('node_modules/');
-    expect(entries).toContain('.env');
+    expect(entries).toContain('.env*');
+    expect(entries).toContain('!.env.example');
+    expect(entries).toContain('coverage/');
+    expect(entries).toContain('.pnpm-debug.log*');
     expect(entries).toContain('dist/');
   });
 
@@ -13,6 +16,8 @@ describe('getTemplateEntries', () => {
     const entries = getTemplateEntries('nextjs');
     expect(entries).toContain('.next/');
     expect(entries).toContain('out/');
+    expect(entries).toContain('next-env.d.ts');
+    expect(entries).toContain('*.pem');
   });
 
   it('returns Python entries', () => {
@@ -54,7 +59,7 @@ describe('buildGitignore', () => {
   it('includes Node.js entries when node stack is detected', () => {
     const output = buildGitignore(['node']);
     expect(output).toContain('node_modules/');
-    expect(output).toContain('.env');
+    expect(output).toContain('.env*');
   });
 
   it('includes entries for all detected stacks', () => {

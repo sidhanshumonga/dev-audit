@@ -1,6 +1,6 @@
 {
   "name": "@dev-audit/dead-api-detector",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Detects backend API routes that are never called by frontend code",
   "main": "dist/cli/index.js",
   "bin": {
