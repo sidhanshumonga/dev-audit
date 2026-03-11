@@ -15,7 +15,7 @@ function generateValue(property: ParsedProperty): unknown {
     return faker.person.fullName();
   if (nameLower === 'firstname' || nameLower === 'first_name') return faker.person.firstName();
   if (nameLower === 'lastname' || nameLower === 'last_name') return faker.person.lastName();
-  if (nameLower === 'username') return faker.internet.username();
+  if (nameLower === 'username') return faker.internet.userName();
   if (nameLower === 'password') return faker.internet.password();
   if (nameLower === 'phone' || nameLower === 'phonenumber' || nameLower === 'phone_number')
     return faker.phone.number();
