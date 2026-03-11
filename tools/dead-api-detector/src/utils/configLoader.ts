@@ -4,11 +4,16 @@ import path from 'path';
 export interface DevAuditConfig {
   ignoreDirectories: string[];
   framework: 'auto' | 'express' | 'nextjs' | 'nestjs';
+  // Routes to suppress from dead endpoint results — useful for endpoints
+  // triggered externally (cron schedulers, webhooks, manual scripts) that
+  // will never appear as fetch() calls in your source code.
+  ignoreEndpoints: string[];
 }
 
 const DEFAULTS: DevAuditConfig = {
   ignoreDirectories: ['node_modules', '.next', 'dist', 'build', '.git'],
   framework: 'auto',
+  ignoreEndpoints: [],
 };
 
 // Looks for dev-audit.config.json in the given project root.
@@ -27,6 +32,7 @@ export function loadConfig(projectRoot: string): DevAuditConfig {
     return {
       ignoreDirectories: parsed.ignoreDirectories ?? DEFAULTS.ignoreDirectories,
       framework: parsed.framework ?? DEFAULTS.framework,
+      ignoreEndpoints: parsed.ignoreEndpoints ?? DEFAULTS.ignoreEndpoints,
     };
   } catch {
     // If the config file is malformed, warn and fall back to defaults

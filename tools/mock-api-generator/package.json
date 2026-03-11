@@ -1,6 +1,6 @@
 {
   "name": "@dev-audit/mock-api-generator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Spins up a mock REST API server from TypeScript type definitions",
   "main": "dist/cli/index.js",
   "bin": {

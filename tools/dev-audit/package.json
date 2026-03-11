@@ -1,6 +1,6 @@
 {
   "name": "dev-audit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A lightweight CLI toolkit for keeping your codebase clean",
   "main": "dist/index.js",
   "bin": {

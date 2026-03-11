@@ -15,6 +15,8 @@ const API_CALL_PATTERNS: RegExp[] = [
   /axios\.[a-z]+\s*\(\s*['"`]([^'"`]+)['"`]/g,
   // useEffect / generic string that starts with /api/
   /['"`](\/api\/[^'"`\s]+)['"`]/g,
+  // Template literal pattern to capture dynamic fetch calls like fetch(`/api/users/${id}`)
+  /fetch\s*\(\s*`([^`]+)`/g,
 ];
 
 // Scans all frontend source files and extracts any strings that look like
@@ -38,7 +40,9 @@ export async function scanFrontendCalls(projectRoot: string): Promise<ApiCall[]>
         let match: RegExpExecArray | null;
 
         while ((match = pattern.exec(line)) !== null) {
-          const apiPath = match[1];
+          // Strip template literal interpolations so `/api/users/${id}` becomes
+          // `/api/users/` — this lets us match it against dynamic route segments
+          const apiPath = match[1].replace(/\$\{[^}]+\}/g, '');
 
           // Only record paths that look like they're hitting an API endpoint
           if (apiPath.startsWith('/api/') || apiPath.startsWith('/')) {
