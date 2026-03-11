@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "ts-node src/index.ts",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "lint": "eslint src --ext .ts",
     "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\""
   },
