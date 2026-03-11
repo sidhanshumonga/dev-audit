@@ -12,8 +12,12 @@ dev-audit helps developers detect dead API endpoints, generate smart `.gitignore
 
 ## Installation
 
+No install required — run any tool instantly with `npx`:
+
 ```bash
-npx dev-audit
+npx dev-audit dead scan
+npx dev-audit gitignore generate --write
+npx dev-audit mock serve --types ./src/types.ts
 ```
 
 Or install globally:
@@ -25,14 +29,22 @@ npm install -g dev-audit
 ## Usage
 
 ```bash
-# Run a full scan
-dev-audit scan
+# Detect dead API endpoints
+dev-audit dead scan
 
-# Generate a .gitignore
-dev-audit gitignore
+# Generate a tailored .gitignore
+dev-audit gitignore generate --write
 
-# Spin up a mock API server
-dev-audit mock
+# Spin up a mock API server from TypeScript types
+dev-audit mock serve --types ./src/types.ts
+```
+
+Individual tools can also be run directly:
+
+```bash
+npx @dev-audit/dead-api-detector scan
+npx @dev-audit/gitignore-generator generate --write
+npx @dev-audit/mock-api-generator serve --types ./src/types.ts
 ```
 
 ## Repository Structure
@@ -40,6 +52,7 @@ dev-audit mock
 ```
 dev-audit/
 ├── tools/
+│   ├── dev-audit/           # Meta-package CLI router
 │   ├── dead-api-detector/
 │   ├── gitignore-generator/
 │   └── mock-api-generator/
