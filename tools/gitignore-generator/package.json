@@ -22,6 +22,20 @@
     "static-analysis"
   ],
   "license": "MIT",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sidhanshumonga/dev-audit.git",
+    "directory": "tools/gitignore-generator"
+  },
+  "homepage": "https://github.com/sidhanshumonga/dev-audit/tree/main/tools/gitignore-generator#readme",
+  "bugs": {
+    "url": "https://github.com/sidhanshumonga/dev-audit/issues"
+  },
   "dependencies": {
     "chalk": "^5.3.0",
     "commander": "^11.1.0",

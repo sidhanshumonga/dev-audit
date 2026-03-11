@@ -23,6 +23,20 @@
     "faker"
   ],
   "license": "MIT",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sidhanshumonga/dev-audit.git",
+    "directory": "tools/mock-api-generator"
+  },
+  "homepage": "https://github.com/sidhanshumonga/dev-audit/tree/main/tools/mock-api-generator#readme",
+  "bugs": {
+    "url": "https://github.com/sidhanshumonga/dev-audit/issues"
+  },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
     "chalk": "^5.3.0",
