@@ -19,7 +19,15 @@
     "devtools",
     "api",
     "dead-code",
-    "static-analysis"
+    "static-analysis",
+    "dead-api",
+    "unused-routes",
+    "api-scanner",
+    "express",
+    "nextjs",
+    "nestjs",
+    "code-hygiene",
+    "typescript"
   ],
   "license": "MIT",
   "files": [

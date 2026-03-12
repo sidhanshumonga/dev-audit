@@ -20,7 +20,14 @@
     "mock",
     "api",
     "typescript",
-    "faker"
+    "faker",
+    "mock-api",
+    "mock-server",
+    "api-mocking",
+    "typescript-types",
+    "fake-data",
+    "code-hygiene",
+    "rest-api"
   ],
   "license": "MIT",
   "files": [

@@ -19,7 +19,15 @@
     "devtools",
     "gitignore",
     "generator",
-    "static-analysis"
+    "static-analysis",
+    "gitignore-generator",
+    "stack-detection",
+    "nodejs",
+    "nextjs",
+    "python",
+    "docker",
+    "code-hygiene",
+    "typescript"
   ],
   "license": "MIT",
   "files": [

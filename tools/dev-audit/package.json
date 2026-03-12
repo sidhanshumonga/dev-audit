@@ -19,7 +19,16 @@
     "api",
     "gitignore",
     "mock",
-    "typescript"
+    "typescript",
+    "dead-api",
+    "unused-routes",
+    "gitignore-generator",
+    "mock-server",
+    "code-hygiene",
+    "static-analysis",
+    "developer-tools",
+    "nextjs",
+    "express"
   ],
   "license": "MIT",
   "files": [
