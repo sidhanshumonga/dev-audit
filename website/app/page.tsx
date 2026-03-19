@@ -14,8 +14,11 @@ export default function Home() {
               dev-audit
             </span>
           </div>
-          <div className="flex items-center gap-6">
-            <a href="#install" className="text-sm text-white/60 hover:text-white transition-colors">
+          <div className="flex items-center gap-4 sm:gap-6">
+            <a
+              href="#install"
+              className="hidden sm:block text-sm text-white/60 hover:text-white transition-colors"
+            >
               Install
             </a>
             <a
@@ -25,7 +28,7 @@ export default function Home() {
               className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors"
             >
               <Github size={16} />
-              GitHub
+              <span className="hidden sm:inline">GitHub</span>
             </a>
             <a
               href="https://buymeacoffee.com/sidhanshu"
@@ -34,7 +37,7 @@ export default function Home() {
               className="flex items-center gap-2 text-sm bg-yellow-400 text-black font-medium px-3 py-1.5 rounded-full hover:bg-yellow-300 transition-colors"
             >
               <Coffee size={14} />
-              Buy me a coffee
+              <span className="hidden sm:inline">Buy me a coffee</span>
             </a>
           </div>
         </div>
